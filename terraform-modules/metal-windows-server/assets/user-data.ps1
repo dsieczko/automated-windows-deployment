@@ -1,4 +1,6 @@
 #ps1
+
+# allow remote access
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine
 winrm set winrm/config/service '@{AllowUnencrypted="true"}'
 winrm set winrm/config/service/auth '@{Basic="true"}'

@@ -1,7 +1,0 @@
-auth_token              = "some-auth-token"
-project_id              = "some-project-id"
-metro                   = "da"
-plan                    = "c3.small.x86"
-server_count            = 4
-hostname                = "windows"
-administrator_password  = "Change@me-123!!"
