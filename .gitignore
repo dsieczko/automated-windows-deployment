@@ -1,5 +1,6 @@
 **/.terraform/*
 *.terraform.*
+!.terraform.lock.hcl
 
 override.tf
 override.tf.json
