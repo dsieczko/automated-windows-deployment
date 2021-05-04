@@ -57,7 +57,7 @@ module "windows_servers" {
 # Use `terraform output -json` to see the sensitive password
 output "admin_password" {
   value     = random_password.windows_password.result
-  sensitive = true
+  # sensitive = true
 }
 
 output "public_ipv4s" {

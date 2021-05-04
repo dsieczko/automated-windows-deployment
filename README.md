@@ -13,14 +13,16 @@ terraform init -upgrade
 terraform apply
 ```
 
-When using this as standalone configuration, for example by git cloning the project, you will need to include a `provider "metal" { auth_token="..." }` stanza. A `terraform.tfvars.example` file is provided that you can copy to `terraform.tfvars` and update with your deployment variables.
+When using this as standalone configuration, for example by git cloning the project, you will need to include a `provider "metal" { auth_token="..." }` stanza. 
 
 
+## Provisioning with PowerShell
 
+Each server is deployed with some basic user-data located in [assets/user-data.ps1](assets/user-data.ps1) that enables remote access to the server, updates the `Admin` user's password, and creates a directory called **C:\\metal-terraform-ps-scripts.**
 
+The PowerShell scripts in [assets/](assets/) are stored in **C:\\metal-terraform-ps-scripts\\**. They will execute synchronously using `winrm`.
 
-## Provisioning with Powershell
+* [assets/script1.ps1](assets/script1.ps1)
+* [assets/script2.ps1](assets/script2.ps1)
 
-Each server is deployed with some basic user-data located in the **user-data** that enables remote access to the server.
-
-We generate PowerShell scripts locally for each server using **build-ps-scripts** and then remotely execute the scripts on each provisioned server. There are some example PS commands in the scripts but you can replace it with whatever you want to run on the Windows servers.
+These are currently not dynamic. If you need to pass data from other Terraform resources, e.g. `metal_device`, you would have to prebuild the templates locally using a Terraform [local-exec)](https://www.terraform.io/docs/language/resources/provisioners/local-exec.html) provisioner and the[templatefile(path, vars)](https://www.terraform.io/docs/language/functions/templatefile.html) function. 
