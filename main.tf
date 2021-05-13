@@ -30,7 +30,7 @@ resource "null_resource" "run-script1-setup" {
   }
 
   provisioner "file" {
-    source      = "${path.module}/assets/script1.ps1"
+    content     = templatefile(var.script1_path, {})
     destination = "C:\\metal-terraform-ps-scripts\\script1.ps1"
   }
 
@@ -55,7 +55,7 @@ resource "null_resource" "run-script2-setup" {
   }
 
   provisioner "file" {
-    source      = "${path.module}/assets/script2.ps1"
+    content     = templatefile(var.script2_path, {})
     destination = "C:\\metal-terraform-ps-scripts\\script2.ps1"
   }
 

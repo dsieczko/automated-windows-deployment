@@ -35,3 +35,13 @@ variable "operating_system" {
   default     = "windows_2019"
   description = "Billing cycle for device"
 }
+
+variable "script1_path" {
+  type        = string
+  description = "Path to 1st PowerShell script"
+}
+
+variable "script2_path" {
+  type        = string
+  description = "Path to 2nd PowerShell script"
+}

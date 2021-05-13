@@ -25,4 +25,4 @@ The PowerShell scripts in [assets/](assets/) are stored in **C:\\metal-terraform
 * [assets/script1.ps1](assets/script1.ps1)
 * [assets/script2.ps1](assets/script2.ps1)
 
-These are currently not dynamic. If you need to pass data from other Terraform resources, e.g. `metal_device`, you would have to prebuild the templates locally using a Terraform [local-exec)](https://www.terraform.io/docs/language/resources/provisioners/local-exec.html) provisioner and the[templatefile(path, vars)](https://www.terraform.io/docs/language/functions/templatefile.html) function. 
+These are currently not dynamic. If you need to pass data from other Terraform resources, e.g. `metal_device`, you can pass variables in [main.tf](main.tf) using the [templatefile(path, vars)](https://www.terraform.io/docs/language/functions/templatefile.html) function in the `null_resource` blocks.
