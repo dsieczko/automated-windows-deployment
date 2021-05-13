@@ -9,9 +9,11 @@ variable "project_id" {}
 locals {
   metro          = "da"
   plan           = "c3.small.x86"
-  server_count   = 2
+  server_count   = 1
   hostname       = "windows"
   admin_password = random_password.windows_password.result
+  script1_path   = "./assets/script1.ps1"
+  script2_path   = "./assets/script2.ps1"
 }
 
 terraform {
@@ -33,7 +35,7 @@ provider "metal" {
   auth_token = var.auth_token
 }
 
-module "windows_servers" {
+module "windows_server" {
   count = local.server_count
 
   providers = {
@@ -52,6 +54,8 @@ module "windows_servers" {
   hostname         = "${local.hostname}${count.index}"
   operating_system = "windows_2019"
   plan             = local.plan
+  script1_path     = abspath(local.script1_path)
+  script2_path     = abspath(local.script2_path)
 }
 
 # Use `terraform output -json` to see the sensitive password
@@ -61,5 +65,5 @@ output "admin_password" {
 }
 
 output "public_ipv4s" {
-  value = module.windows_servers[*].public_ipv4
+  value = module.windows_server[*].public_ipv4
 }
