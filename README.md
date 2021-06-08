@@ -18,7 +18,7 @@ When using this as standalone configuration, for example by git cloning the proj
 
 ## Provisioning with PowerShell
 
-Each server is deployed with some basic user-data located in [assets/user-data.ps1](assets/user-data.ps1) that enables remote access to the server, updates the `Admin` user's password, and creates a directory called **C:\\metal-terraform-ps-scripts.**
+Each server is deployed with some basic user-data located in [assets/user-data.ps1](assets/user-data.ps1) that enables remote access to the server, updates the `Administrator` user's password, and creates a directory called **C:\\metal-terraform-ps-scripts.**
 
 The PowerShell scripts are supplied by the module's user, you can see example scripts in [examples/simple/assets/](examples/simple/assets/). They are deployed using `null_resource` blocks and stored on the remote servers in **C:\\metal-terraform-ps-scripts\\**. They  execute synchronously using `winrm`. Here are the sample scripts:
 
