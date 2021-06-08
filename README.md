@@ -20,9 +20,9 @@ When using this as standalone configuration, for example by git cloning the proj
 
 Each server is deployed with some basic user-data located in [assets/user-data.ps1](assets/user-data.ps1) that enables remote access to the server, updates the `Admin` user's password, and creates a directory called **C:\\metal-terraform-ps-scripts.**
 
-The PowerShell scripts in [assets/](assets/) are stored in **C:\\metal-terraform-ps-scripts\\**. They will execute synchronously using `winrm`.
+The PowerShell scripts are supplied by the module's user, you can see example scripts in [examples/simple/assets/](examples/simple/assets/). They are deployed using `null_resource` blocks and stored on the remote servers in **C:\\metal-terraform-ps-scripts\\**. They  execute synchronously using `winrm`. Here are the sample scripts:
 
-* [assets/script1.ps1](assets/script1.ps1)
-* [assets/script2.ps1](assets/script2.ps1)
+* [examples/simple/assets/script1.ps1](assets/script1.ps1)
+* [examples/simple/assets/script2.ps1](assets/script2.ps1)
 
-These are currently not dynamic. If you need to pass data from other Terraform resources, e.g. `metal_device`, you can pass variables in [main.tf](main.tf) using the [templatefile(path, vars)](https://www.terraform.io/docs/language/functions/templatefile.html) function in the `null_resource` blocks.
+These scripts are currently not dynamic, meaning they don't leverage any data returned from the Metal API about provisioned servers to be used in the scripts.
